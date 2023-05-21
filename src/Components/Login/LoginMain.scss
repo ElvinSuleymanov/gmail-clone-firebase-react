@@ -1,0 +1,254 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+    
+.form_container {
+        border: 1px solid #dadce0;
+        transition:0.3s all;
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 500px;
+        width: 450px;
+        padding: 48px 40px 50px;
+        border-radius: 8px;
+        // overflow:clip;
+        margin:auto;
+       top:50%;
+       transform: translateY(-50%);
+        form.email { 
+            min-width: 450px;
+            padding: 48px 40px 50px;
+            transition: 0.2s all;
+            position: absolute;
+            left:0px;
+            &.translated {
+                transform: translateX(-200%);
+            }
+         .greeting_messages {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color:#202124;
+            font-weight: 500;
+            font-family: 'Open Sans';
+            div:nth-child(2) {
+                font-size: 23px;
+                margin-bottom: 13px;
+            }
+            .logo {
+                width: 75px;
+                img {
+                    width: 100%;
+                }
+            }
+         }
+        
+         .email_input {
+                margin-top: 26px;    
+                height: fit-content;
+                position: relative;
+                input {   
+                outline:none;
+                background-color: transparent;
+                border: 2px solid #dadce0;
+                padding: 17px 15px;
+                width: 100%;
+                border-radius: 5px;
+                font-size: 16px;
+                caret-color: #202124;
+                transition: 0.1s all linear;
+                &:focus {
+                    border: 2px solid #1B66C9;
+                   
+                }
+            }
+                .placeholder {
+                    z-index: -1;
+                    position: absolute;
+                    padding: 7px;
+                    top:50%;
+                    background-color: white;   
+                    font-family: 'Open Sans';
+                    transform: translate(10%,-50%);
+                    transition: 0.1s all;
+                    &.gone {
+                        z-index: 1;
+                        transform: translate(10%,-140%);
+                        color:#1B66C9;
+                        font-size: 12px;
+                    }
+                 }
+         }
+            button {
+            background-color: transparent;
+            border:none;
+            color:#1B66C9;
+            font-weight: 500;
+            margin-top: 15px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            }
+            .security_questions {
+            margin-top: 20px;   
+            font-family: 'Open Sans';
+            font-size: 13px;
+            color:#5f6368;
+         }
+            .options {
+            display: flex;
+            justify-content: space-between;
+    
+            .next_page_btn {
+                background-color: rgb(26,115,232);
+                color:#fff;
+                padding: 10px;
+                padding: 8px 24px;
+                border-radius: 4px;
+                &:hover {
+                    background-color: #1B66C9;  
+                }
+            }
+            .create_account_btn {
+                border-radius: 4px;
+                &:hover {
+                    background-color: #F6FAFE;
+                    transition: 0.1s all;
+                }
+            }
+            }
+        }
+    
+        form.password {
+            padding: 48px 40px 50px;
+            min-width: 450px;
+            transition: 0.2s all;
+            position: absolute;
+            right:-200%;
+            &.translated {
+                transform: translateX(-200%);
+            }
+
+            .save_account_btn {
+                visibility: hidden;
+            }
+            .greeting_messages {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                color:#202124;
+                font-weight: 500;
+                font-family: 'Open Sans';
+                div:nth-child(2) {
+                    font-size: 23px;
+                    margin-bottom: 13px;
+                }
+                .logo {
+                    width: 75px;
+                    img {
+                        width: 100%;
+                    }
+                }
+             }
+            
+            .email_input {
+                    margin-top: 26px;    
+                    height: fit-content;
+                    position: relative;
+                    input {   
+                    outline:none;
+                    background-color: transparent;
+                    border: 2px solid #dadce0;
+                    padding: 17px 15px;
+                    width: 100%;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    caret-color: #202124;
+                    transition: 0.1s all linear;
+                    &:focus {
+                        border: 2px solid #1B66C9;
+                       
+                    }
+                }
+                    .placeholder {
+                        z-index: -1;
+                        position: absolute;
+                        padding: 7px;
+                        top:50%;
+                        background-color: white;   
+                        font-family: 'Open Sans';
+                        transform: translate(10%,-50%);
+                        transition: 0.1s all;
+                        &.gone {
+                            z-index: 1;
+                            transform: translate(10%,-140%);
+                            color:#1B66C9;
+                            font-size: 12px;
+                        }
+                     }
+             }
+            button {
+                background-color: transparent;
+                border:none;
+                color:#1B66C9;
+                font-weight: 500;
+                margin-top: 15px;
+                font-size: 14px;
+                cursor: pointer;
+                margin-bottom: 20px;
+                }
+            .security_questions {
+                margin-top: 20px;   
+                font-family: 'Open Sans';
+                font-size: 13px;
+                color:#5f6368;
+             }
+                .options {
+                display: flex;
+                justify-content: space-between;
+        
+            .next_page_btn {
+                    background-color: rgb(26,115,232);
+                    color:#fff;
+                    padding: 10px;
+                    padding: 8px 24px;
+                    border-radius: 4px;
+                    &:hover {
+                        background-color: #1B66C9;  
+                    }
+                }
+    
+            .create_account_btn {
+                   visibility: none;
+                    border-radius: 4px;
+                    &:hover {
+                        background-color: #F6FAFE;
+                        transition: 0.1s all;
+                    }
+                }
+                }
+        }
+    }
+
+
+
+@media (max-width:450px) {
+    .form_container {
+        max-width: 100%;
+        padding: 0;
+        form.email {
+           padding-left: 5%;
+           padding-right: 5%;
+            min-width: 100%;
+
+        }
+        form.password {
+            padding-left: 5%;
+            padding-right: 5%;
+            min-width: 100%;
+          
+            
+        }
+    }
+}

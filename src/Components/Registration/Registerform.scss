@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap');
+
+
+.registration_form {
+    border:1px solid #dadce0;
+    border-radius: 8px;
+    width: 750px;
+    font-family: 'Open Sans';
+    padding: 48px 40px 36px;
+    font-size: 21px;
+    margin:0 auto;
+    display: flex;
+    transform: translateY(25%);
+    .shield_logo {
+        width: 240px;
+    }
+    form.register {
+        .logo {
+            img {
+                width: 75px;
+
+            }
+        }
+        .name_surname {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+
+            .name {
+                position: relative;
+                input {
+                    outline:none;
+                    background-color: transparent;
+                    border: 2px solid #dadce0;
+                    padding: 8px 5px;
+                    width: 95%;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    caret-color: #202124;
+                    transition: 0.1s all linear;
+                    &:focus {
+                        border: 2px solid #1B66C9;
+                       
+                    }
+                }
+                .placeholder {
+                    z-index: -1;
+                    position: absolute;
+                    font-size: 13px;
+                    padding: 7px;
+                    top:50%;
+                    background-color: white;   
+                    font-family: 'Open Sans';
+                    transform: translate(10%,-50%);
+                    transition: 0.1s all;
+                    &.gone {
+                        z-index: 1;
+                        transform: translate(10%,-120%);
+                        color:#1B66C9;
+                        font-size: 12px;
+                    }
+                 }
+            }
+            .surname {
+                position: relative;
+                input {
+                    outline:none;
+                    background-color: transparent;
+                    border: 2px solid #dadce0;
+                    padding: 8px 5px;
+                    width: 95%;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    caret-color: #202124;
+                    transition: 0.1s all linear;
+                    &:focus {
+                        border: 2px solid #1B66C9;
+                       
+                    }   
+                }
+                .placeholder {
+                    z-index: -1;
+                    position: absolute;
+                    padding: 7px;
+                    font-size: 13px;
+                    top:50%;
+                    background-color: white;   
+                    font-family: 'Open Sans';
+                    transform: translate(10%,-50%);
+                    transition: 0.1s all;
+                    &.gone {
+                        z-index: 1;
+                        transform: translate(10%,-120%);
+                        color:#1B66C9;
+                        font-size: 12px;
+                    }
+                 }
+            }
+        }
+
+        .email_input {
+            position: relative;
+            padding-top: 18px;
+            input {
+                
+                outline:none;
+                background-color: transparent;
+                border: 2px solid #dadce0;
+                padding: 8px 5px;
+                width: 95%;
+                border-radius: 5px;
+                font-size: 16px;
+                caret-color: #202124;
+                transition: 0.1s all linear;
+                &::placeholder {
+                    text-align: right;
+                    color:#000;
+                }
+                &:focus {
+                    border: 2px solid #1B66C9;
+                   
+                }
+            }
+            .placeholder {
+                z-index: -1;
+                position: absolute;
+                font-size: 13px;
+                padding: 7px;
+                top:50%;
+                background-color: white;   
+                font-family: 'Open Sans';
+                transform: translate(10%,-25%);
+                transition: 0.1s all;
+                &.gone {
+                    z-index: 1;
+                    transform: translate(10%,-90%);
+                    color:#1B66C9;
+                    font-size: 12px;
+                }
+             }
+        }
+        .password_inputs  {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            .main_password {
+                position: relative;
+            input {
+                outline:none;
+                background-color: transparent;
+                border: 2px solid #dadce0;
+                padding: 8px 5px;
+                width: 95%;
+                border-radius: 5px;
+                font-size: 16px;
+                caret-color: #202124;
+                transition: 0.1s all linear;
+                &:focus {
+                    border: 2px solid #1B66C9;
+                   
+                }
+                }
+
+            }
+            .placeholder {
+                z-index: -1;
+                position: absolute;
+                font-size: 13px;
+                padding: 7px;
+                top:50%;
+                background-color: white;   
+                font-family: 'Open Sans';
+                transform: translate(10%,-50%);
+                transition: 0.1s all;
+                &.gone {
+                    z-index: 1;
+                    transform: translate(10%,-123%);
+                    color:#1B66C9;
+                    font-size: 12px;
+                }
+             }
+            .repeat_password {
+                position: relative;
+                input {
+                    outline:none;
+                    background-color: transparent;
+                    border: 2px solid #dadce0;
+                    padding: 8px 5px;
+                    width: 95%;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    caret-color: #202124;
+                    transition: 0.1s all linear;
+                    &:focus {
+                        border: 2px solid #1B66C9;
+                       
+                    }
+                }
+            .placeholder {
+                z-index: -1;
+                position: absolute;
+                font-size: 13px;
+                padding: 7px;
+                top:50%;
+                background-color: white;   
+                font-family: 'Open Sans';
+                transform: translate(10%,-50%);
+                transition: 0.1s all;
+                &.gone {
+                    z-index: 1;
+                    transform: translate(10%,-123%);
+                    color:#1B66C9;
+                    font-size: 12px;
+                }
+             }
+            }
+        }
+        .show_password {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            
+            label {
+                font-size: 13px;
+                user-select: none;
+            }
+            input[type="checkbox"] {
+                margin-left: 10px;
+                width: 20px;
+                height: 20px;
+                transition: 1s all;
+            } 
+
+        }
+        .submit_btn_container {
+            display: flex;
+            margin-top: 30px;   
+            justify-content: space-between;
+            .next_btn {
+                background-color: rgb(26,115,232);
+                color:white;
+                padding:5px 15px;
+                outline:none;
+                border:none;
+                border-radius: 4px;
+                font-family: inherit;
+                cursor: pointer;
+                &:hover {
+                    background-color: #1B66C9;  
+                }
+            }
+            .back_sign {
+                background-color: transparent;
+                font-family: inherit;
+                border:none;
+                outline:none;
+                cursor: pointer;
+                padding: 8px;
+                border-radius: 5px;
+                &:hover {
+                    background-color: #F6FAFE;;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:600px) {
+    .registration_form {
+        justify-content: center;
+        width: 90%;
+        .shield_logo { 
+            display: none;
+        }
+       
+    }
+}

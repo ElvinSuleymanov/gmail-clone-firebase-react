@@ -1,0 +1,619 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Open+Sans:wght@400;500;700&family=Poppins:wght@400;500&display=swap');
+
+
+.main_section {
+    header {
+        background-color: #F6F8FC;
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        padding: 10px;
+        grid-area:header;
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            flex:0.75;
+            padding: 5px;
+            user-select: none;
+            .burgermenu {
+                cursor: pointer;
+                display: flex;
+                margin: 10px;
+                font-size: 22px;
+            }
+        }
+        .input_bar {
+            position: relative;
+            flex:2;
+            font-family: 'Open Sans';
+            input {
+                padding: 15px;
+                width: 100%;
+                background-color: #EAF1FB;
+                border:none;
+                border-radius:8px;
+                font-family: 'Open Sans';
+                padding-left: 35px;
+                padding-right: 30px;
+                font-weight: 500;
+                &::placeholder {
+                    font-weight: 500;
+                }
+                &:focus {
+                    background-color: white;
+                    outline: none;
+                    box-shadow: 0px 0.5px 1px rgb(150, 150, 150);
+                }
+            }
+            .search_icon {
+                position: absolute;
+                left:10px;
+                top:50%;
+                transform:translateY(-50%);
+                color:#5f6368;
+            }
+            .filter_icon {
+                position: absolute;
+                right:10px;
+                top:50%;
+                transform:translateY(-50%);
+                
+            }
+        }
+      
+        .account_icons {
+            flex:1.5;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            .settings_icon {
+                position: relative;
+                height: fit-content;
+                cursor: pointer;
+                display: flex;
+                font-size: 22px;
+                margin: 10px;
+                transform: rotateZ(90deg);
+                &::after {
+                    position: absolute;
+                    content: '';
+                    display: none;
+                    top:0px;
+                    bottom:0px;
+                    left:0px;
+                    right:0px;
+                    border-radius: 50%;
+                    transform: scale(1.5);
+    
+                    background-color: rgba(60,64,67,0.078);
+                    
+                }
+                &:hover {
+                    &::after {
+                        display: block;
+                    }
+                }      
+            }
+            .dots_icon {
+                position: relative;
+                height: fit-content;
+                cursor: pointer;
+                display: flex;
+                margin: 10px;
+                font-size: 22px;
+                
+                &::after {
+                    position: absolute;
+                    content: '';
+                    display: none;
+                    top:0px;
+                    bottom:0px;
+                    left:0px;
+                    right:0px;
+                    border-radius: 50%;
+                    transform: scale(1.5);
+                    background-color: rgba(60,64,67,0.078);
+                    
+                }
+                &:hover {
+                    &::after {
+                        display: block;
+                    }
+                }      
+            }
+            .question_mark {
+                position: relative;
+                height: fit-content;
+                cursor: pointer;
+                display: flex;
+                margin: 10px;
+                font-size: 22px;
+                
+                &::after {
+                    position: absolute;
+                    content: '';
+                    display: none;
+                    top:0px;
+                    bottom:0px;
+                    left:0px;
+                    right:0px;
+                    border-radius: 50%;
+                    transform: scale(1.5);
+                    background-color: rgba(60,64,67,0.078);
+                }
+                &:hover {
+                    &::after {
+                        display: block;
+                    }
+                }      
+            }
+            .profile_photo {
+                margin: 10px;
+                background-color: rgb(25, 93, 142);
+                color:#fff;
+                font-family:inherit ;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                width: 30px;
+                font-size: 22px;
+                font-family: 'Open Sans';
+                cursor: pointer;
+                &::after {
+                    position: absolute;
+                    content: '';
+                    display: none;
+                    top:0px;
+                    bottom:0px;
+                    left:0px;
+                    right:0px;
+                    border-radius: 50%;
+                    transform: scale(1.2);
+                    background-color: rgba(60,64,67,0.078);
+                }
+                &:hover {
+                    &::after {
+                        display: block;
+                    }
+                }      
+            }
+        }
+    }
+
+    section {
+        display: flex;
+        position: relative;
+        aside {
+            // width: 19%;
+
+            width:5%;
+            background-color: #F6F8FC;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: 0.1s all;
+            gap:10px;
+            padding: 10px;
+            position: absolute;
+            left:0px;
+            top:0px;
+            bottom:0px;
+            z-index: 100;
+            &.active {
+                
+                width: 320px;
+                
+                .create_mail {
+                    .create_btn {
+                        display: flex;
+                        align-items: center;    
+                        &::after {
+                            font-weight: 500;
+                            font-family: 'Open Sans';
+                            content: 'Compose';
+                            font-size: 16px;
+                            margin-left: 15px;
+                        }
+                    }
+                }
+                .clock_icon {
+                    display: flex;
+                    align-items: center;    
+                    &::after {
+                        font-weight: 500;
+                        font-family: 'Open Sans';
+                        content: 'Compose';
+                        font-size: 13px;
+                        margin-left: 15px;
+                    }
+                }
+                .star_icon {
+                    display: flex;
+                    align-items: center;
+                   
+                    &::after {
+                        font-weight: 500;
+                        font-family: 'Open Sans';
+                        content: 'Starred';
+                        font-size: 13px;
+                        margin-left: 15px;
+                    }
+                   
+                }
+                .inbox_icon {
+                    display: flex;
+                    align-items: center;
+                  
+                    
+                    &::after {
+                        font-weight: 500;
+                        font-size: 13px;
+                        font-family: 'Open Sans';
+                        content: 'Inbox';
+                        margin-left: 15px;
+                    }
+                }
+            }
+            .create_mail {
+                
+                .create_btn {
+                   
+                    
+                    display: flex;
+                    justify-content: flex-start;
+                    padding: 10px 12px;
+                    border:none;  
+                    outline:none;
+                    cursor: pointer;
+                    font-size: 25px;
+                    border-radius: 12px;
+                    background-color: #C2E7FF;
+                    transition: .09s all;
+                    height: 45px;
+                    .btn_text {
+                        font-size: 16px;
+                    }
+                   &:hover {
+                       box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
+                   }
+                   
+                }
+            }
+            .clock_icon {
+                padding: 8px 10px;
+                .clock {
+                    background-color: transparent;
+                    border:none;
+                    outline:none;
+                    font-size: 20px;
+                    
+                }
+            }
+            .star_icon {
+                .star {
+                    background-color: transparent;
+                    border: none;
+                    outline:none;
+                    font-size: 20px;
+                }
+                padding: 8px 10px;
+
+            }
+            .inbox_icon {
+                transition: 0.2s all;
+                .inbox {
+                    
+                    background-color: transparent;
+                    border: none;
+                    outline:none;
+                    font-size: 20px;
+
+                }
+                padding: 8px 10px;
+            }
+        }
+        .mail_container {
+            width: 100%;
+            background-color:#F6F8FC;
+            height: 90vh;
+            position: relative;
+            padding-left: 5%;
+            .mails_container {
+                background-color: white;
+                width: 100%;
+                height: 100%;
+                // padding: 10px;
+                border-radius: 25px;
+                padding-right: 0px;
+                padding-top: 20px;
+                .mail {
+                    box-shadow: inset 0 -1px 0 0 rgba(100,121,143,0.122);
+                    display: flex;
+                    padding: 10px 0;
+                    padding-left: 10px;
+                    align-items: center;
+                    gap:10px;
+                    cursor: pointer;
+                    &:hover {
+                        box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+                    }
+                    .mail_options {
+                        display: flex;
+                        align-items: center;
+                        flex:0.2
+                    }
+                    .mail_sender {
+                        font-weight: 600;
+                        flex:1;
+                    }
+                    .mail_text {
+                        flex:2;
+                    }
+                    .mail_subject {
+                        font-weight: 700;
+                        
+                    }
+                }
+            }
+            .mail_box {
+                position: absolute;
+                width: 400px;
+                bottom:0px;
+                right:2%;
+                height: 500px;
+                background-color: white;
+                box-shadow: 0px 8px 10px 1px rgba(0,0,0,.14), 0px 3px 14px 2px rgba(0,0,0,.12), 0px 5px 5px -3px rgba(0,0,0,.2);
+                .mail_box_controller {
+                    display: flex;
+                    background-color:#F2F6FC;
+                    justify-content: space-between;
+                    padding: 10px;
+                    font-family: 'Open Sans';
+                    .controller {
+                        display: flex;
+                        gap:5px;
+                        .minimize {
+                            font-size: 20px;
+                            cursor:pointer;
+                        } 
+                        .fullscreen {
+                            font-size: 20px;
+                            cursor:pointer;
+
+                        }
+                        .close { 
+                            font-size: 22px;
+                            cursor:pointer;
+
+                        }
+                    }
+                }
+                .mail_form_container {
+                    form {
+                        .target_acc {
+                            input {
+                                padding: 9px;
+                                border:none;
+                                border-bottom:0.6px solid rgb(163, 163, 163);
+                                width: 100%;
+                                font-weight: 600;
+                                &:focus {
+                                    outline:none
+                                }
+                            }
+                        }
+                        .subject_mail {
+                            input {
+                                padding: 9px;
+                                border:none;
+                                border-bottom:0.6px solid rgb(163, 163, 163);
+                                width: 100%;
+                                &:focus {
+                                    outline:none
+                                }
+                            }
+                        }
+                        .mail_text {
+                            textarea {
+                                border:none;
+                                resize: none;
+                                padding: 10px;
+                                max-width: 100%;
+                                min-width: 100%;
+                                max-height: 100%;
+                                min-height: 100%;
+                                font-weight: 600;
+                                font-family: inherit;                                
+                                &:focus {
+                                    outline:none;
+                                }
+                            }
+                        }
+                    }
+
+                }
+                .sending_options {
+                    position: absolute;
+                    bottom:20px;
+                    left:20px;
+
+                    .send {
+                        .send_btn {
+                            &:hover {
+                                box-shadow: 0 1px 2px 0 rgba(26,115,232,0.451), 0 1px 3px 1px rgba(26,115,232,0.302);
+                            }
+                            cursor:pointer;
+                            border-top-left-radius: 15px;
+                            border-bottom-left-radius: 15px;
+                            background-color: #1B61D1;
+                            color:#fff;
+                            width: 70px;
+                            height: 30px;
+                            border:none;
+                            border-right:0.5px solid #000;
+                            font-weight: 600;
+                        
+                        }
+                        .schedule_btn {
+                            &:hover {
+                                box-shadow: 0 1px 2px 0 rgba(26,115,232,0.451), 0 1px 3px 1px rgba(26,115,232,0.302);
+                            }
+                            cursor:pointer;
+                            height: 30px;
+                            width: 30px;
+                            border:none;
+                            border-top-right-radius: 15px;
+                            border-bottom-right-radius: 15px;
+                            color:#fff;
+                            background-color: #1B61D1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+@media(max-width:1300px) {
+    .main_section {
+
+        section {
+            aside {
+                width: 7%;
+            }
+            .mail_container {
+                padding-left: 7%;
+            }
+        
+        }
+    }
+}
+
+@media(max-width:980px) {
+    .main_section {
+
+        section {
+            aside {
+                width: 9%;
+            }
+            .mail_container {
+                padding-left: 9%;
+            }
+        }
+    }
+}
+
+
+@media(max-width:750px) {
+    .main_section {
+
+        section {
+            aside {
+                width: 11%;
+            }
+            .mail_container {
+                padding-left: 11%;
+            }
+        }
+    }
+}
+
+@media(max-width:600px) {
+    .main_section {
+        header {
+            .account_icons {
+                display: none;
+            }
+        }
+        section {
+            aside {
+                width: 13%;
+            }
+            .mail_container {
+                padding-left: 13%;
+            }
+        }
+    }
+}
+
+
+@media(max-width:500px) {
+    .main_section {
+
+        section {
+            aside {
+                width: 15%;
+                &.active {
+                    width: 280px;
+                }
+            }
+            .mail_container {
+                padding-left: 15%;
+                .mail_box {
+                    width: 300px;
+                    z-index: 10;
+                 
+                }
+            }
+        }
+    }
+}
+
+
+
+@media(max-width:425px) {
+    .main_section {
+
+        section {
+            aside {
+                width: 17%;
+               
+            }
+            .mail_container {
+                padding-left: 17%;
+            }
+        }
+    }
+}
+
+
+@media(max-width:390px) {
+    .main_section {
+
+        section {
+            aside {
+                width: 19%;
+               
+            }
+            .mail_container {
+                padding-left: 19%;
+                .mail_box {
+                    width: 220px;
+                }   
+            }
+        }
+    }
+}
+
+
+@media(max-width:300px) {
+    .main_section {
+        section {
+            aside {
+                width: 22%;
+            }
+            .mail_container {
+                padding-left: 22%;
+               .mail_box {
+                width: 200px;
+               }
+            }
+        }
+    }
+}
