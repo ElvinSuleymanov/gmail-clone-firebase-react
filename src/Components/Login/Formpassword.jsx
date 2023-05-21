@@ -5,12 +5,14 @@ import { toggleActions } from '../../Redux/store'
 import { useSelector,useDispatch } from 'react-redux'
 import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 const FormPassword = () => {
     const dispatch = useDispatch()
     const state = useSelector(state => state)
     const placeHolderRef = useRef()
     const inputRef = useRef()
     const navigate = useNavigate()
+
     console.log(state.currentAcc);
     return (state.currentAcc.targetAcc &&
         <form action="" className={`password ${state.toggleStates.nextPage ? 'translated' : ''}`}>
@@ -41,6 +43,7 @@ const FormPassword = () => {
                 e.preventDefault()
                 if (state.currentAcc.targetAcc.password === inputRef.current.value) {
                     navigate(`/accounts/${state.currentAcc.currentID}`)
+                    localStorage.setItem("user",JSON.stringify(state.currentAcc.targetAcc))
                 }
             }} className="next_page_btn">Next</button>
         </div>

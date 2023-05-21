@@ -323,13 +323,69 @@
             position: relative;
             padding-left: 5%;
             .mails_container {
+                
+                .mail_container_options {
+                    position: absolute;
+                    top:10px;
+                    .refresh_btn {
+                        background-color: transparent;
+                        border:none;
+                        margin-left: 30px;
+                        cursor: pointer;
+                        font-size: 20px;
+                        position: relative;
+                        z-index: 1;
+                        &:hover {
+                            &::after {
+                                transform:translate(-50%,-50%) scale(1.2);
+                            }
+                            &::before {
+                                opacity: 1;
+                            }
+                        }
+                        &::after {
+                            transition: 0.1s all;
+                            z-index: -1;
+                            display: block;
+                            content: '';
+                            background-color: #f6f8fc;
+                            height: 30px;
+                            width: 30px;
+                            position: absolute;
+                            left:50%;
+                            top:46%;
+                            transform:translate(-50%,-50%) scale(1);
+                            border-radius: 50%;
+                        }
+                        &::before {
+                            content: 'Refresh';
+                            transition: 0.1s all;
+                            transition-delay: 0.5s;
+                            font-size: 12px;
+                            display: block;
+                            color:#fff;
+                            font-family: 'Open Sans';
+                            font-weight: 600;
+                            width: 60px;
+                            padding: 10px 0;
+                            text-align: center;
+                            position: absolute;
+                            top:110%;
+                            left:50%;
+                            transform: translateX(-50%);
+                            background-color: #6B6D6C;
+                            border-radius: 5px;
+                            opacity: 0;
+                        }
+                    }
+                }
                 background-color: white;
                 width: 100%;
                 height: 100%;
                 // padding: 10px;
                 border-radius: 25px;
                 padding-right: 0px;
-                padding-top: 20px;
+                padding-top: 40px;
                 .mail {
                     box-shadow: inset 0 -1px 0 0 rgba(100,121,143,0.122);
                     display: flex;
@@ -393,6 +449,7 @@
                     }
                 }
                 .mail_form_container {
+
                     form {
                         .target_acc {
                             input {

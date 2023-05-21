@@ -81,7 +81,7 @@ const Form = () => {
                    console.log(state.currentAcc.currentID);
                     findAcc(id)
                     navigate('/login')
-                  
+                    
                 }
             }} className="next_page_btn">Next</button>
         </div>

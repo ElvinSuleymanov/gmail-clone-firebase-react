@@ -10,12 +10,17 @@ const Mailbox = () => {
     const targetAccInput = useRef()
     const mailTextInput = useRef()
     const mailSubjectInput = useRef()
-    
+    var month= ["January","February","March","April","May","June","July",
+            "August","September","October","November","December"];
+
+
+
     const sendMailHandler = (e) => {
        let newMail = {
         mailsender:state.currentAcc.targetAcc.username,
         mailsubject:mailSubjectInput.current.value,
-        mailtext:mailTextInput.current.value
+        mailtext:mailTextInput.current.value,
+        maildate:month[new Date().getMonth()] + new Date().getDate()
        }
 
 

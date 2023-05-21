@@ -10,15 +10,25 @@ const Mainpage = () => {
     const {userid} = useParams()
     const state = useSelector(state => state)
     const [st,setst] = useState(0)
-    return (
+
+return (
         <div className='main_section'>
+
+            
+           
             <Search></Search>
             <section>
             <Sidebar></Sidebar>
             <Mailcontainer></Mailcontainer>
             </section>
+             
         </div>
-    )
+
+)
+   
+
+    
+    
 }
 
 export default Mainpage

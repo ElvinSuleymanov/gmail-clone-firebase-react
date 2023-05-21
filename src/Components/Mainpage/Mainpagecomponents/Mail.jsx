@@ -18,7 +18,7 @@ const Mail = (props) => {
                 {props.props[1].mailtext}
             </div>
             <div className="mail_send_date">
-
+            {props.props[1].maildate}
             </div>
         </div>
     )
