@@ -27,10 +27,10 @@ const Mailcontainer = () => {
            <div className="mail_container_options">
             <button className="refresh_btn" onClick={RefreshBtnHandler}><RefreshIcon></RefreshIcon></button>
            </div>
-           {inbox && Object.entries(inbox).map(mail => {
+           {inbox && Object.entries(inbox).reverse().map(mail => {
             return (
 
-                <Mail props={mail}></Mail>
+                <Mail props={mail} setInboxState={setInbox} inboxState={inbox}></Mail>
             )
            })}
            </div>

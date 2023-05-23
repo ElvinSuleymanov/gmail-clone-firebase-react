@@ -3,8 +3,9 @@ import {FaInbox} from 'react-icons/fa'
 import {AiOutlineStar as Staricon} from 'react-icons/ai'
 import {AiOutlineClockCircle as Clockicon} from 'react-icons/ai' 
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleActions } from '../../../Redux/store'
+import { toggleActions} from '../../../Redux/store'
 const Sidebar = () => {
+    
     const state = useSelector(state => state)
     const dispatch = useDispatch()
 
