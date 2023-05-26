@@ -7,21 +7,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import {RxHamburgerMenu} from 'react-icons/rx'
 import Logo from '../../../Assets/logo_gmail_lockup_default_1x_r5.png'
 import { toggleActions } from '../../../Redux/store'
+import { useNavigate } from 'react-router-dom'
+
+import { inputActions } from '../../../Redux/store'
 const Searchbar = () => {
     const state = useSelector(state => state.currentAcc.targetAcc)
-    const statee = useSelector(state => state)
+    
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const inputFocusHandler = e => {
+        e.preventDefault()
+        dispatch(inputActions.searchInputFocus())
+        
+    }
     return (
         <header>
             
             <div className="logo">
             <RxHamburgerMenu onClick={() => dispatch(toggleActions.toggleSidebar())} className='burgermenu'></RxHamburgerMenu>
-            <img src={Logo} alt="" />   
+            <img src={Logo} style={{cursor:'pointer'}} onClick={() => navigate('/')} alt="" />   
             </div>
             <div className="input_bar">
                 <Searchicon className='search_icon'></Searchicon>
                 <Settingsicon className='filter_icon'></Settingsicon>
-                <input type="text" placeholder="Search mail" />
+                <input type="text" placeholder="Search mail" onFocus={inputFocusHandler} />
             </div>
             <div className="account_icons">
                 <div className="question_mark">

@@ -20,7 +20,9 @@ const Mailbox = () => {
         mailsender:state.currentAcc.targetAcc.username,
         mailsubject:mailSubjectInput.current.value,
         mailtext:mailTextInput.current.value,
-        maildate:month[new Date().getMonth()] + new Date().getDate()
+        maildate:new Date().getDate() +  ' ' +month[new Date().getMonth()],
+        mailTime:new Date().getHours().toString().padStart(2,0) + ':' + new Date().getMinutes().toString().padStart(2,0),
+        currentSeconds: new Date().getTime() 
        }
 
 
@@ -51,7 +53,7 @@ const Mailbox = () => {
     //     body: JSON.stringify()
     //     })
     //   }
-
+        dispatch(toggleActions.hideMailBox())
     }
     
 

@@ -4,6 +4,11 @@ import {AiOutlineStar as Staricon} from 'react-icons/ai'
 import {AiOutlineClockCircle as Clockicon} from 'react-icons/ai' 
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleActions} from '../../../Redux/store'
+import { Outlet } from 'react-router-dom'
+import {IoSendSharp} from 'react-icons/io5'
+
+
+
 const Sidebar = () => {
     
     const state = useSelector(state => state)
@@ -33,7 +38,7 @@ const Sidebar = () => {
                {/* <span className="btn_text">Compose</span> */}
             </button>
         </div>
-        <div className="inbox_icon ">
+        <div className="inbox_icon current">
             <button className="inbox">
             <FaInbox></FaInbox>
             </button>
@@ -46,6 +51,11 @@ const Sidebar = () => {
         <div className="clock_icon">
             <button className="clock">
                 <Clockicon></Clockicon>
+            </button>
+        </div>
+        <div className="sent_icon">
+            <button className="sent">
+                <IoSendSharp></IoSendSharp>
             </button>
         </div>
     </aside>

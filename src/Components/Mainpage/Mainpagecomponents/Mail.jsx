@@ -1,29 +1,53 @@
 import { useEffect, useState } from 'react';
 import {AiOutlineStar as Staricon} from 'react-icons/ai'
 import {HiInbox} from 'react-icons/hi'
-import {BsFillTrashFill as TrashIcon} from 'react-icons/bs' 
 import {BsFillEnvelopeFill as EnvelopeIcon} from 'react-icons/bs' 
 import {AiOutlineClockCircle as Clockicon} from 'react-icons/ai' 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import {BsFillTrashFill as TrashIcon} from 'react-icons/bs'
 
+
+        // Actions
+import { defineCurrentMail } from '../../../Redux/store';
+import { setCurrentAcc } from '../../../Redux/store';
 const Mail = (props) => {
     const [showIcons,setShowIcons] = useState(false)
     const state = useSelector(state => state)
+    const dispatch = useDispatch()
     const mailID = props.props[0]
-
-    const deleteBtnHandler =  e => {
+    const navigate = useNavigate()
+ 
+    const deleteBtnHandler = e => {
         e.preventDefault()
+        e.stopPropagation()
+        props.setInbox(Object.fromEntries(Object.entries(props.inboxState).filter(mail => mail[0] !== props.props[0])))
         fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${state.currentAcc.currentID}/inbox/${props.props[0]}.json`,{
             method:'DELETE'
         })
-        props.setInboxState(Object.fromEntries(Object.entries(props.inboxState).filter(mail => mail[0] !== props.props[0])))
 
     }    
 
-  
+    const refreshPreviousPage = async () => {
+        try {
+            const response = await fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${state.currentAcc.currentID}.json`)
+            const user = await response.json()
+            props.setInbox(user.inbox)
+           
+        }
+        catch(err) {
+            console.log(err)
+        }
+    }
 
     return (
-        <div className="mail" onMouseLeave={() => {
+        <div className="mail" onClick={ e => {
+            e.stopPropagation()
+            e.preventDefault()
+            refreshPreviousPage()
+            dispatch(defineCurrentMail.definePage(props.props)) 
+             navigate(`/accounts/${state.currentAcc.currentID}/${props.props[0]}`)
+        } } onMouseLeave={() => {
             setShowIcons(false)
         }} onMouseEnter={() => {
             setShowIcons(true)
@@ -65,5 +89,6 @@ const Mail = (props) => {
 
         </div>
     )
+    
 }
 export default Mail

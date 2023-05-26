@@ -36,6 +36,8 @@ const toggleFunctionsSlice = createSlice({
     }
 })
 
+
+
 const inputToggles = createSlice({
     name:'InputToggles',
     initialState: {
@@ -43,7 +45,8 @@ const inputToggles = createSlice({
         surnameInput:false,
         emailInput:false,
         passwordInput:false,
-        passwordInputRepeat:false
+        passwordInputRepeat:false,
+        searchInputFocus:false
     },
     reducers: {
         nameInput:(state,action) => {
@@ -85,6 +88,9 @@ const inputToggles = createSlice({
             else if (action.payload === true){
                 state.passwordInputRepeat = true
             }
+        },
+        searchInputFocus:(state,action) => {
+            state.searchInputFocus = !state.searchInputFocus
         }
     }
 })
@@ -99,6 +105,17 @@ const accountsSlice = createSlice({
     }
 })
 
+const mailPage = createSlice({
+    name:'Mail Page',
+    initialState: {
+        currentMail:undefined
+    },
+    reducers: {
+        definePage:(state,action) => {
+            state.currentMail = action.payload
+        }
+    }
+})
 
 const currentAccountSlice = createSlice({
     name:'Current',
@@ -129,13 +146,16 @@ const accounts = createSlice({
     }
 })
 
+
 const states = configureStore({
     reducer: {
         toggleStates:toggleFunctionsSlice.reducer,
         accounts:accountsSlice.reducer,
         inputStates:inputToggles.reducer,
         currentAcc:currentAccountSlice.reducer,
-        accountsObject:accounts.reducer
+        accountsObject:accounts.reducer,
+        mailPageState:mailPage.reducer,
+        
     }
 })
 
@@ -144,5 +164,6 @@ export const toggleActions = toggleFunctionsSlice.actions
 export const inputActions = inputToggles.actions
 export const accountActions = accounts.actions
 export const setCurrentAcc = currentAccountSlice.actions
+export const defineCurrentMail  = mailPage.actions
 
 export default states

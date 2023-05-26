@@ -27,18 +27,20 @@
             position: relative;
             flex:2;
             font-family: 'Open Sans';
+            
             input {
                 padding: 15px;
                 width: 100%;
                 background-color: #EAF1FB;
                 border:none;
-                border-radius:8px;
+                border-radius:18px;
                 font-family: 'Open Sans';
                 padding-left: 35px;
                 padding-right: 30px;
                 font-weight: 500;
                 &::placeholder {
                     font-weight: 500;
+                    font-size: 16px;
                 }
                 &:focus {
                     background-color: white;
@@ -51,13 +53,18 @@
                 left:10px;
                 top:50%;
                 transform:translateY(-50%);
-                color:#5f6368;
+                color:#3b3d40;
+                stroke-width: 15px;
+                font-size: 20px;
             }
             .filter_icon {
                 position: absolute;
                 right:10px;
                 top:50%;
-                transform:translateY(-50%);
+                transform:translateY(-50%) rotate(90deg);
+                stroke-width: 12px;
+                font-size: 20px;
+                
                 
             }
         }
@@ -229,6 +236,8 @@
                         content: 'Compose';
                         font-size: 13px;
                         margin-left: 15px;
+                      
+                        
                     }
                 }
                 .star_icon {
@@ -248,12 +257,25 @@
                     display: flex;
                     align-items: center;
                   
-                    
+                   
                     &::after {
                         font-weight: 500;
                         font-size: 13px;
                         font-family: 'Open Sans';
                         content: 'Inbox';
+                        margin-left: 15px;
+                    }
+                }
+                .sent_icon {
+                    display: flex;
+                    align-items: center;
+                    
+                   
+                    &::after {
+                        font-weight: 500;
+                        font-size: 13px;
+                        font-family: 'Open Sans';
+                        content: 'Sent';
                         margin-left: 15px;
                     }
                 }
@@ -274,9 +296,11 @@
                     background-color: #C2E7FF;
                     transition: .09s all;
                     height: 45px;
+
                     .btn_text {
                         font-size: 16px;
                     }
+                    
                    &:hover {
                        box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)
                    }
@@ -284,27 +308,78 @@
                 }
             }
             .clock_icon {
-                padding: 8px 10px;
+                padding: 0px 10px;
+                position: relative;
                 .clock {
                     background-color: transparent;
                     border:none;
                     outline:none;
                     font-size: 20px;
-                    
+                   
+                }
+                &.current {
+
+                    &::before {
+                        content:'';
+                        display: block;
+                        height:30px;
+                        width: 30px;
+                        border-radius: 50%;
+                        background-color:#D3E3FD;
+                        position: absolute;
+                        top:45%;
+                        left:5px;
+                        z-index: -1;
+                        transform:translateY(-50%)
+                    }
                 }
             }
             .star_icon {
+                position: relative;
                 .star {
                     background-color: transparent;
                     border: none;
                     outline:none;
                     font-size: 20px;
                 }
-                padding: 8px 10px;
+                padding: 0px 10px;
+                &.current {
 
+                    &::before {
+                        content:'';
+                        display: block;
+                        height:30px;
+                        width: 30px;
+                        border-radius: 50%;
+                        background-color:#D3E3FD;
+                        position: absolute;
+                        top:45%;
+                        left:5px;
+                        z-index: -1;
+                        transform:translateY(-50%)
+                    }
+                }
             }
             .inbox_icon {
                 transition: 0.2s all;
+                position: relative;
+                z-index: 1; 
+                &.current {
+
+                    &::before {
+                        content:'';
+                        display: block;
+                        height:30px;
+                        width: 30px;
+                        border-radius: 50%;
+                        background-color:#D3E3FD;
+                        position: absolute;
+                        top:45%;
+                        left:5px;
+                        z-index: -1;
+                        transform:translateY(-50%)
+                    }
+                }
                 .inbox {
                     
                     background-color: transparent;
@@ -313,7 +388,37 @@
                     font-size: 20px;
 
                 }
-                padding: 8px 10px;
+                padding: 0px 10px;
+            }
+            .sent_icon {
+                transition: 0.2s all;
+                position: relative;
+                z-index: 1; 
+                &.current {
+
+                    &::before {
+                        content:'';
+                        display: block;
+                        height:30px;
+                        width: 30px;
+                        border-radius: 50%;
+                        background-color:#D3E3FD;
+                        position: absolute;
+                        top:45%;
+                        left:5px;
+                        z-index: -1;
+                        transform:translateY(-50%)
+                    }
+                }
+                .sent {
+                    
+                    background-color: transparent;
+                    border: none;
+                    outline:none;
+                    font-size: 18px;
+
+                }
+                padding: 0px 10px;
             }
         }
         .mail_container {
@@ -392,6 +497,7 @@
                     padding: 10px 0;
                     padding-left: 10px;
                     align-items: center;
+                   
                     gap:10px;
                     cursor: pointer;
                     &:hover {
@@ -417,7 +523,7 @@
                     .mail_send_date {
                         width: 150px;
                         height: 20px;
-                        text-align: right;
+                        text-align: center;
 
                     }
                     .mail_controllers {
@@ -426,6 +532,7 @@
                         display: flex;
                         align-items: center;
                         justify-content: flex-end;
+                       
                         .icon {
                             margin:0 13px;
                             position: relative;
