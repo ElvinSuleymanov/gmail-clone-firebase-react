@@ -9,11 +9,11 @@ import Mailcontainer from './Mainpagecomponents/Mailcontainer'
 import { Routes,Route,Router } from 'react-router-dom'
 import Maildetail from './Mainpagecomponents/Maildetail'
 import { Outlet } from 'react-router-dom'
+import ReactDOM from 'react-dom';
 const Mainpage = () => {
     const {userid} = useParams()
     const state = useSelector(state => state)
-    const [st,setst] = useState(0)
-
+  
 return (
 
 

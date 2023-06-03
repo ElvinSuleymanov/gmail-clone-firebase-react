@@ -42,7 +42,6 @@ const Mail = (props) => {
             console.log(err)
         }
     }
-    console.log(props.props[1]);
     return (
         <div className="mail" onClick={ e => {
             e.stopPropagation()

@@ -18,7 +18,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { inputActions } from '../../../Redux/store'
 import { useEffect } from 'react'
 
-const Openedinput = () => {
+const Openedinput = (props) => {
+    const navigate = useNavigate()
     const state2 = useSelector(state => state)
     const dispatch = useDispatch()
     
@@ -41,7 +42,7 @@ const Openedinput = () => {
     },[])
     // inboxArr.filter(mail => mail[1].mailtext === state2.inputFilterStates.filterByString)
     return (
-        <div className="input_bar_toggle">
+        <div className="input_bar_toggle" >
                 <div className="input_bar_toggle_filters">
                     <button className="attach_btn_filter">Has an Attachment</button>
                     <button className="sent_btn_filter">From me</button>
@@ -59,12 +60,16 @@ const Openedinput = () => {
                         </div>
                     </div>
                 </div>
-                <div className="filtered_mails">
+                <div className="filtered_mails" ref={props.reference}>
 
                     {inboxArr.map(mail => {
                         if (mail[1].mailtext.match(new RegExp(`^${state2.inputFilterStates.filterByString}`)) ) {
                             return (
-                            <div className="mail">
+                            <div className="mail"  onClick={(e) => {
+                            
+                                console.log(mail[0]);
+                                navigate(`/accounts/${state2.currentAcc.currentID}/${mail[0]}`)
+                            }}>
                                 <div className="envelope_icon">
                                     <Envelope></Envelope>
                                 </div>

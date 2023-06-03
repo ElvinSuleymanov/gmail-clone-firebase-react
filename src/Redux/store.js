@@ -90,7 +90,9 @@ const inputToggles = createSlice({
             }
         },
         searchInputFocus:(state,action) => {
+            
             state.searchInputFocus = !state.searchInputFocus
+            
         }
     }
 })
@@ -176,6 +178,17 @@ const sideBarSlice = createSlice({
     }
 })
 
+const headerTogglesSlice = createSlice({
+    name:'header toggles',
+    initialState: {
+        showQuestionMarkToggle:false
+    },
+    reducers: {
+        toggleQuestionMark:(state,action) => {
+            state.showQuestionMarkToggle = !state.showQuestionMarkToggle
+        }
+    }
+})
 
 const inputFilterSlice = createSlice({
     name:'Input Filter',
@@ -198,7 +211,8 @@ const states = configureStore({
         accountsObject:accounts.reducer,
         mailPageState:mailPage.reducer,
         inputFilterStates:inputFilterSlice.reducer,
-        sideBarStates:sideBarSlice.reducer
+        sideBarStates:sideBarSlice.reducer,
+        headerStates:headerTogglesSlice.reducer
     }
 })
 
@@ -210,6 +224,6 @@ export const setCurrentAcc = currentAccountSlice.actions
 export const defineCurrentMail  = mailPage.actions
 export const inputFilterActions = inputFilterSlice.actions
 export const sideBarToggles = sideBarSlice.actions
-
+export const headerToggles = headerTogglesSlice.actions
 
 export default states

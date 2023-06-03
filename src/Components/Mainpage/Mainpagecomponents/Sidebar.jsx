@@ -7,7 +7,7 @@ import { sideBarToggles, toggleActions} from '../../../Redux/store'
 import { Outlet, useNavigate } from 'react-router-dom'
 import {IoSendSharp} from 'react-icons/io5'
 
-
+import { inputActions } from '../../../Redux/store'
 
 const Sidebar = () => {
     const state = useSelector(state => state)
@@ -28,7 +28,7 @@ const Sidebar = () => {
         
     }} onMouseEnter={() => {
         dispatch(toggleActions.openSidebar())
-
+       
     }}>
         
         <div className="create_mail">

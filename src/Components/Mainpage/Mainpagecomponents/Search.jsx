@@ -10,23 +10,25 @@ import { inputFilterActions, toggleActions } from '../../../Redux/store'
 import { useNavigate } from 'react-router-dom'
 import Openedinput from './Openedinput'
 import { inputActions } from '../../../Redux/store'
-
+import { headerToggles } from '../../../Redux/store'
+import QuestionMarkToggle from './Questiontoggle'
+import { useRef } from 'react'
 
 const Searchbar = () => {
     const state = useSelector(state => state.currentAcc.targetAcc)
     const state2 = useSelector(state => state)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    const inputRef = useRef()
     const inputFocusHandler = e => {
         e.preventDefault()
+      
         dispatch(inputActions.searchInputFocus())
         
     }
     const inputBlurHandler = e => {
         e.preventDefault()
-        dispatch(inputActions.searchInputFocus())
-        console.log(state2.inputStates.searchInputFocus);
+            dispatch(inputActions.searchInputFocus())
 
     }
 
@@ -35,6 +37,11 @@ const Searchbar = () => {
         e.preventDefault()
         dispatch(inputFilterActions.setFilterByString(e.target.value))
          
+    }
+
+    const questionMarkToggle = e => {
+        e.preventDefault()
+        dispatch(headerToggles.toggleQuestionMark())
     }
     return (
         <header>
@@ -47,12 +54,13 @@ const Searchbar = () => {
                 <Searchicon className='search_icon'></Searchicon>
                 <Settingsicon className='filter_icon'></Settingsicon>
                 <input type="text" placeholder="Search mail" className={`${state2.inputStates.searchInputFocus ? 'opened' : ''}`} onFocus={inputFocusHandler} onChange={inputChangeHandler} onBlur={inputBlurHandler}/>
-                {state2.inputStates.searchInputFocus && <Openedinput></Openedinput>}
+                {state2.inputStates.searchInputFocus && <Openedinput reference={inputRef}></Openedinput>}
             </div>
             
             <div className="account_icons">
-                <div className="question_mark">
+                <div className="question_mark" onClick={questionMarkToggle}>
                 <Questionmark></Questionmark>
+                {state2.headerStates.showQuestionMarkToggle && <QuestionMarkToggle></QuestionMarkToggle>}
                 </div>
                 <div className="settings_icon">
                 <FiSettings></FiSettings>
@@ -61,7 +69,7 @@ const Searchbar = () => {
                     <Menudots></Menudots>
                 </div>
                 <div className="profile_photo">
-                    <div className="letter">
+                    <div className="letter" style={{userSelect:'none'}}>
                     {state.name[0].toUpperCase()}
 
                     </div>
