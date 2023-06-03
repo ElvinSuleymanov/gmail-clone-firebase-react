@@ -12,7 +12,7 @@ const Mailcontainer = () => {
 
     },)
     const [inbox,setInbox] = useState(state.currentAcc.targetAcc.inbox)
-    console.log(state.currentAcc.targetAcc.inbox);
+    
     
 
     const refreshData = async () => {
@@ -46,7 +46,7 @@ const Mailcontainer = () => {
            </div>
            {inbox &&  Object.entries(inbox).reverse().map(mail => {
             return (
-
+                
                 <Mail props={mail} setInbox={setInbox}  inboxState={inbox}></Mail>
             )
            })}

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import {AiOutlineStar as Staricon} from 'react-icons/ai'
 import {HiInbox} from 'react-icons/hi'
@@ -11,7 +12,11 @@ import {BsFillTrashFill as TrashIcon} from 'react-icons/bs'
         // Actions
 import { defineCurrentMail } from '../../../Redux/store';
 import { setCurrentAcc } from '../../../Redux/store';
-const Mail = (props) => {
+
+
+const SentMail = (props) => {
+
+
     const [showIcons,setShowIcons] = useState(false)
     const state = useSelector(state => state)
     const dispatch = useDispatch()
@@ -42,9 +47,10 @@ const Mail = (props) => {
             console.log(err)
         }
     }
-    console.log(props.props[1]);
+
+
     return (
-        <div className="mail" onClick={ e => {
+               <div className="mail" onClick={ e => {
             e.stopPropagation()
             e.preventDefault()
             refreshPreviousPage()
@@ -92,6 +98,6 @@ const Mail = (props) => {
 
         </div>
     )
-    
 }
-export default Mail
+
+export default SentMail

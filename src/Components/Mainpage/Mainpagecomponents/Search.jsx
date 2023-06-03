@@ -6,13 +6,15 @@ import {SlQuestion as Questionmark} from 'react-icons/sl'
 import { useDispatch, useSelector } from 'react-redux'
 import {RxHamburgerMenu} from 'react-icons/rx'
 import Logo from '../../../Assets/logo_gmail_lockup_default_1x_r5.png'
-import { toggleActions } from '../../../Redux/store'
+import { inputFilterActions, toggleActions } from '../../../Redux/store'
 import { useNavigate } from 'react-router-dom'
-
+import Openedinput from './Openedinput'
 import { inputActions } from '../../../Redux/store'
+
+
 const Searchbar = () => {
     const state = useSelector(state => state.currentAcc.targetAcc)
-    
+    const state2 = useSelector(state => state)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -21,6 +23,19 @@ const Searchbar = () => {
         dispatch(inputActions.searchInputFocus())
         
     }
+    const inputBlurHandler = e => {
+        e.preventDefault()
+        dispatch(inputActions.searchInputFocus())
+        console.log(state2.inputStates.searchInputFocus);
+
+    }
+
+
+    const inputChangeHandler = e => {
+        e.preventDefault()
+        dispatch(inputFilterActions.setFilterByString(e.target.value))
+         
+    }
     return (
         <header>
             
@@ -28,11 +43,13 @@ const Searchbar = () => {
             <RxHamburgerMenu onClick={() => dispatch(toggleActions.toggleSidebar())} className='burgermenu'></RxHamburgerMenu>
             <img src={Logo} style={{cursor:'pointer'}} onClick={() => navigate('/')} alt="" />   
             </div>
-            <div className="input_bar">
+           <div className="input_bar">
                 <Searchicon className='search_icon'></Searchicon>
                 <Settingsicon className='filter_icon'></Settingsicon>
-                <input type="text" placeholder="Search mail" onFocus={inputFocusHandler} />
+                <input type="text" placeholder="Search mail" className={`${state2.inputStates.searchInputFocus ? 'opened' : ''}`} onFocus={inputFocusHandler} onChange={inputChangeHandler} onBlur={inputBlurHandler}/>
+                {state2.inputStates.searchInputFocus && <Openedinput></Openedinput>}
             </div>
+            
             <div className="account_icons">
                 <div className="question_mark">
                 <Questionmark></Questionmark>

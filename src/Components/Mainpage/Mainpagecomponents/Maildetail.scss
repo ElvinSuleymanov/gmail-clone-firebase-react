@@ -50,6 +50,8 @@
                         font-size: 30px;
                         font-family: 'Open Sans';
                         margin-left: 5%;
+                        word-wrap: break-word;
+                        width: 70%;
                     }
                     .mail_sent_date {
                         font-size: 18px;
@@ -68,6 +70,7 @@
                         width: 60%;
                         margin:0 auto;
                         padding: 20px;
+                        word-wrap: break-word;
                         .mail_sender_informations {
                             display: flex;
                             align-items: center;

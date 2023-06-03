@@ -3,19 +3,23 @@ import {FaInbox} from 'react-icons/fa'
 import {AiOutlineStar as Staricon} from 'react-icons/ai'
 import {AiOutlineClockCircle as Clockicon} from 'react-icons/ai' 
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleActions} from '../../../Redux/store'
-import { Outlet } from 'react-router-dom'
+import { sideBarToggles, toggleActions} from '../../../Redux/store'
+import { Outlet, useNavigate } from 'react-router-dom'
 import {IoSendSharp} from 'react-icons/io5'
 
 
 
 const Sidebar = () => {
-    
     const state = useSelector(state => state)
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
 
-    
+    const sentButtonHandler = (e) => {
+        e.preventDefault()
+        dispatch(sideBarToggles.setCurrentPage('sent'))
+        navigate(`/accounts/${state.currentAcc.currentID}/sent`)
+    }
 
 
     return (
@@ -38,9 +42,13 @@ const Sidebar = () => {
                {/* <span className="btn_text">Compose</span> */}
             </button>
         </div>
-        <div className="inbox_icon current">
-            <button className="inbox">
-            <FaInbox></FaInbox>
+        <div className={`inbox_icon ${state.sideBarStates.inboxPage ? 'current' : ''}`} >
+            <button className="inbox" style={{cursor:'pointer'}} onClick={() => {
+            dispatch(sideBarToggles.setCurrentPage('inbox'))
+            navigate(`/accounts/${state.currentAcc.currentID}`)
+
+        }}>
+            <FaInbox ></FaInbox>
             </button>
         </div>
         <div className="star_icon">
@@ -53,8 +61,8 @@ const Sidebar = () => {
                 <Clockicon></Clockicon>
             </button>
         </div>
-        <div className="sent_icon">
-            <button className="sent">
+        <div className={`sent_icon ${state.sideBarStates.sentPage ? 'current' : ''}`}   >
+            <button className={`sent`} onClick={sentButtonHandler} style={{cursor:'pointer'}} >
                 <IoSendSharp></IoSendSharp>
             </button>
         </div>

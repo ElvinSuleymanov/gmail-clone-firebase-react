@@ -146,6 +146,48 @@ const accounts = createSlice({
     }
 })
 
+const sideBarSlice = createSlice({
+    name:'Side',
+    initialState:{
+        sentPage:false,
+        inboxPage:false,
+        favoritesPage:false,
+        
+    },
+    reducers: {
+        setCurrentPage:(state,action) => {
+            if (action.payload == 'sent') {
+                state.sentPage = true
+                state.favoritesPage = false
+                state.inboxPage =false
+            }
+            else if (action.payload == 'inbox') {
+                state.sentPage = false
+                state.favoritesPage = false
+                state.inboxPage =true
+            }
+            else if(action.payload == 'favorite') {
+                state.favoritesPage = true
+                state.sentPage = false
+                state.inboxPage =true
+            }
+        },
+        
+    }
+})
+
+
+const inputFilterSlice = createSlice({
+    name:'Input Filter',
+    initialState: {
+        filterByString:undefined
+    },
+    reducers: {
+        setFilterByString:(state,action) => {
+            state.filterByString = action.payload
+        }
+    }
+})
 
 const states = configureStore({
     reducer: {
@@ -155,7 +197,8 @@ const states = configureStore({
         currentAcc:currentAccountSlice.reducer,
         accountsObject:accounts.reducer,
         mailPageState:mailPage.reducer,
-        
+        inputFilterStates:inputFilterSlice.reducer,
+        sideBarStates:sideBarSlice.reducer
     }
 })
 
@@ -165,5 +208,8 @@ export const inputActions = inputToggles.actions
 export const accountActions = accounts.actions
 export const setCurrentAcc = currentAccountSlice.actions
 export const defineCurrentMail  = mailPage.actions
+export const inputFilterActions = inputFilterSlice.actions
+export const sideBarToggles = sideBarSlice.actions
+
 
 export default states

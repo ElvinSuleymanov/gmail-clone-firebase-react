@@ -5,12 +5,20 @@ import './App.css';
   // REACT ROUTER
   import { Routes,Route } from 'react-router-dom';
   import Registerform from './Components/Registration/Registerform'
-  import Mainpage from './Components/Mainpage/Mainpage';
-  import Maildetail from './Components/Mainpage/Mainpagecomponents/Maildetail';
+  // import Mainpage from './Components/Mainpage/Mainpage';
+  // import Maildetail from './Components/Mainpage/Mainpagecomponents/Maildetail';
   import Mailcontainer from './Components/Mainpage/Mainpagecomponents/Mailcontainer';
   import Searchbar from './Components/Mainpage/Mainpagecomponents/Search';
   import Sidebar from './Components/Mainpage/Mainpagecomponents/Sidebar';
   import { Outlet } from 'react-router-dom';
+  import { lazy,Suspense } from 'react';
+  import Loading from './Components/Mainpage/Loading';
+  import SentInbox from './Components/Mainpage/Mainpagecomponents/Sentinbox';
+const Mainpage = lazy(() => import('./Components/Mainpage/Mainpage'))
+const Maildetail = lazy(() => import('./Components/Mainpage/Mainpagecomponents/Maildetail'))
+
+
+
 function App() {
   
   
@@ -24,21 +32,13 @@ function App() {
         <Route path='/login' element={<FormPassword></FormPassword>}></Route>
         <Route path='/registration' element={<Registerform></Registerform>}></Route>
 
+    
         <Route path='/accounts/:userid'>
-          <Route index  element={<Mainpage></Mainpage>} ></Route>
-          <Route path=':mailid' element={<Maildetail  x></Maildetail>}></Route>
+          <Route index  element={<Suspense fallback={<Loading></Loading>}><Mainpage></Mainpage></Suspense>} ></Route>
+          <Route path='sent' element={<SentInbox></SentInbox>}></Route>  
+          <Route path=':mailid' element={<Suspense><Maildetail></Maildetail></Suspense>}></Route>
         </Route>
-
-        
-        
-         
-        
-
-        {/* <Route path='/accounts/:userid'>
-          <Route index element={<Mainpage></Mainpage>}></Route>
-          <Route path=':mailid'element={<Maildetail></Maildetail>}></Route>
-        </Route> */}
-        
+    
       </Routes>
     </div>
   );

@@ -1,7 +1,7 @@
 import {MdOutlineOpenInFull as Fullscreen} from 'react-icons/md'
 import {GrFormClose} from 'react-icons/gr'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleActions } from '../../../Redux/store'
+import { inputFilterActions, toggleActions } from '../../../Redux/store'
 import {VscChromeMinimize} from 'react-icons/vsc'
 import { useRef } from 'react'
 const Mailbox = () => {
@@ -54,6 +54,11 @@ const Mailbox = () => {
     //     })
     //   }
         dispatch(toggleActions.hideMailBox())
+        // dispatch(inputFilterActions.addToSentAccs(targetAccObject[0][1].username))
+        fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${state.currentAcc.currentID}/sent.json`,{
+            method:'POST',
+            body: JSON.stringify({...newMail})
+        })
     }
     
 
