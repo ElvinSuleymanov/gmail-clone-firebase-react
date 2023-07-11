@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import '../Mainpage/Mainpage.scss'
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Logo from '../../Assets/logo_gmail_lockup_default_1x_r5.png'
 import  Search  from '../Mainpage/Mainpagecomponents/Search'
@@ -13,10 +13,12 @@ import ReactDOM from 'react-dom';
 const Mainpage = () => {
     const {userid} = useParams()
     const state = useSelector(state => state)
-  
-return (
+    if (state.currentAcc.currentID === undefined) {
+        return <Navigate to={'/'}></Navigate>
+    }
+    return (
 
-
+    
     
         <div className='main_section'>
             <Search></Search>
@@ -26,7 +28,7 @@ return (
             </section>
         </div>
 
-)
+    )
    
 
     

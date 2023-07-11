@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux"
 import Mailbox from "./Mailbox"
 
 
-
             // ACTIONS
 import { setCurrentAcc } from "../../../Redux/store"
 
@@ -16,13 +15,14 @@ import {AiOutlineArrowLeft as BackArrow} from 'react-icons/ai'
 import {FaInbox as InboxIcon} from 'react-icons/fa'
 import {MdReportGmailerrorred as ReportIcon} from 'react-icons/md'
 import {BsFillTrashFill } from 'react-icons/bs' 
-import { useNavigate } from "react-router-dom"
-
+import { Navigate, useNavigate } from "react-router-dom"
+import { toggleActions } from "../../../Redux/store"
 const Maildetail = (props) => {
     const state = useSelector(state => state)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [condition,setCondition] = useState(false)
+  
     useEffect(() => {
         fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${state.currentAcc.currentID}.json`).then((data) => {
         return data.json()
@@ -31,7 +31,9 @@ const Maildetail = (props) => {
             setCondition(true)
         })
     },[])
-
+    if (state.currentAcc.currentID === undefined) {
+        return <Navigate to={'/'}></Navigate>
+    }
     const deleteHandler = e => {
         e.preventDefault()
         fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${state.currentAcc.currentID}/inbox/${state.mailPageState.currentMail[0]}.json`,
@@ -62,9 +64,9 @@ const Maildetail = (props) => {
     }
 
     TimeShowing()
-
+  
     return ( condition && 
-        <div className='main_section mail_detail'>
+        <div className='main_section mail_detail' >
           
           
             <Searchbar></Searchbar>
@@ -90,7 +92,7 @@ const Maildetail = (props) => {
                 </div>
             </div>
 
-            <div className="mail_detail_container">
+            <div className="mail_detail_container" onClick={() => dispatch(toggleActions.closeSidebar())}>
                 <div className="mail_text_container_top">
                     <div className="mail_subject_detail">{state.mailPageState.currentMail[1].mailsubject}</div>
                     <div className="mail_sent_date">{state.mailPageState.currentMail[1].maildate} {state.mailPageState.currentMail[1].mailTime} ({TimeShowing()}) </div>

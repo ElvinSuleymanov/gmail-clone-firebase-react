@@ -62,8 +62,6 @@ const SentMail = (props) => {
             setShowIcons(true)
         }}>
             <div className="mail_options">
-                <input type="checkbox" />
-               <Staricon></Staricon>
             </div>
             <div className="mail_sender">
             {props.props[1].mailsender}

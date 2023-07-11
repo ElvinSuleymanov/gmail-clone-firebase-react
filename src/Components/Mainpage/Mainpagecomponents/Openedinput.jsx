@@ -36,13 +36,12 @@ const Openedinput = (props) => {
     }
 
     
-    let inboxArr = Object.entries(state2.currentAcc.targetAcc.inbox)    
-    useEffect(() => {
+    let inboxArr =  Object.entries(state2.currentAcc.targetAcc.inbox ? state2.currentAcc.targetAcc.inbox : {})
 
-    },[])
+    
     // inboxArr.filter(mail => mail[1].mailtext === state2.inputFilterStates.filterByString)
     return (
-        <div className="input_bar_toggle" >
+        <div className="input_bar_toggle" style={{overflowX:'hidden'}}>
                 <div className="input_bar_toggle_filters">
                     <button className="attach_btn_filter">Has an Attachment</button>
                     <button className="sent_btn_filter">From me</button>
@@ -62,7 +61,7 @@ const Openedinput = (props) => {
                 </div>
                 <div className="filtered_mails" ref={props.reference}>
 
-                    {inboxArr.map(mail => {
+                    {Boolean(inboxArr)  ? inboxArr.map(mail => {
                         if (mail[1].mailtext.match(new RegExp(`^${state2.inputFilterStates.filterByString}`)) ) {
                             return (
                             <div className="mail"  onClick={(e) => {
@@ -85,7 +84,7 @@ const Openedinput = (props) => {
 
                         }
 
-                    })}
+                    }) : 'You dont have email yet'}
                 </div>
 
          </div>

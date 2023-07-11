@@ -15,44 +15,43 @@ const Mailbox = () => {
 
 
 
-    const sendMailHandler = (e) => {
+    const sendMailHandler = async (e) => {
+        e.preventDefault()
+
+      
+       
        let newMail = {
         mailsender:state.currentAcc.targetAcc.username,
         mailsubject:mailSubjectInput.current.value,
         mailtext:mailTextInput.current.value,
         maildate:new Date().getDate() +  ' ' +month[new Date().getMonth()],
         mailTime:new Date().getHours().toString().padStart(2,0) + ':' + new Date().getMinutes().toString().padStart(2,0),
-        currentSeconds: new Date().getTime() 
+        currentSeconds: new Date().getTime(),
+        isFavorite:false
        }
 
 
            
-        e.preventDefault()
-        
-        let accountsArr = Object.entries(state.accountsObject.accounts)
+        const accountsObjectsResponse = await fetch(`https://clone-b8039-default-rtdb.firebaseio.com/.json`)
+        const accountsObject = await accountsObjectsResponse.json()
+
+        console.log(accountsObject);
+        let accountsArr = Object.entries(accountsObject)
        let targetAccObject = accountsArr.filter(account => {
             if(account[1].username === targetAccInput.current.value) {
                 return account
             }
         })
-        console.log(targetAccObject[0][1]);
-        // if (targetAccObject[0][1].inbox === undefined) {
-        //     fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${targetAccObject[0][0]}.json`,{
-        //         method:'PUT',
-        //         body:JSON.stringify({...targetAccObject[0][1],inbox:[newMail]})
-        //     })
-        // }  
+
+
         fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${targetAccObject[0][0]}/inbox.json`,{
             method:'POST',
             body:JSON.stringify(newMail)
         })
 
-    //   if(targetAccObject[0][1].inbox === undefined) {
-    //     fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${targetAccObject[0][0]}`,{
-    //     method:'POST',
-    //     body: JSON.stringify()
-    //     })
-    //   }
+  
+
+
         dispatch(toggleActions.hideMailBox())
         // dispatch(inputFilterActions.addToSentAccs(targetAccObject[0][1].username))
         fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${state.currentAcc.currentID}/sent.json`,{

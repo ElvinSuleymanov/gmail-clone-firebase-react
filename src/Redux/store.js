@@ -122,9 +122,9 @@ const mailPage = createSlice({
 const currentAccountSlice = createSlice({
     name:'Current',
     initialState: {
-        targetAcc:undefined,
+        targetAcc: undefined,
         currentAcc:undefined,
-        currentID:undefined
+        currentID:undefined,
     },
     reducers: {
         targetAcc:(state,action) => {
@@ -171,7 +171,7 @@ const sideBarSlice = createSlice({
             else if(action.payload == 'favorite') {
                 state.favoritesPage = true
                 state.sentPage = false
-                state.inboxPage =true
+                state.inboxPage = false
             }
         },
         

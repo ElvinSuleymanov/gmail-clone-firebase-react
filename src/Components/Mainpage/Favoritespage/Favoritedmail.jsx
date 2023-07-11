@@ -11,7 +11,7 @@ import {AiFillStar} from 'react-icons/ai'
         // Actions
 import { defineCurrentMail } from '../../../Redux/store';
 import { setCurrentAcc } from '../../../Redux/store';
-const Mail = (props) => {
+const FavoritedMail = (props) => {
 
 
     const [showIcons,setShowIcons] = useState(false)
@@ -37,17 +37,7 @@ const Mail = (props) => {
     }    
 
 
-    const refreshPreviousPage = async () => {
-        try {
-            const response = await fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${state.currentAcc.currentID}.json`)
-            const user = await response.json()
-            props.setInbox(user.inbox)
-           
-        }
-        catch(err) {
-            console.log(err)
-        }
-    }
+
 
 
     const toggleFavoriteHandler = e => {
@@ -64,20 +54,28 @@ const Mail = (props) => {
             body:JSON.stringify(!favorite)
         })
        SetFavorite(!favorite)
-       refreshPreviousPage()
+       
     }
 
 
-    const screenWidth = window.innerWidth
-    const screenCondition = screenWidth > 400 ? 30 : 60
-  
+    const refreshPreviousPage = async () => {
+        try {
+            const response = await fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${state.currentAcc.currentID}.json`)
+            const user = await response.json()
+            props.setInbox(user.inbox)
+           
+        }
+        catch(err) {
+            console.log(err)
+        }
+    }
     return (
         <div className="mail" onClick={ e => {
             e.stopPropagation()
             e.preventDefault()
             refreshPreviousPage()
-            dispatch(defineCurrentMail.definePage(props.props)) 
-            navigate(`/accounts/${state.currentAcc.currentID}/${props.props[0]}`)
+            dispatch(defineCurrentMail.definePage(props.props))
+             navigate(`/accounts/${state.currentAcc.currentID}/${props.props[0]}`)
         } } onMouseLeave={() => {
             setShowIcons(false)
         }} onMouseEnter={() => {
@@ -86,7 +84,7 @@ const Mail = (props) => {
             <div className="mail_options">
                 {favorite
                 ?
-                <AiFillStar stroke='black'  color='yellow' onClick={toggleFavoriteHandler}></AiFillStar>
+                <AiFillStar color='yellow' onClick={toggleFavoriteHandler}></AiFillStar>
                 :
                 <Staricon onClick={toggleFavoriteHandler}></Staricon>   
                 }
@@ -95,10 +93,10 @@ const Mail = (props) => {
             {props.props[1].mailsender}
             </div>
             <div className="mail_subject">
-               {props.props[1].mailsubject.length > screenCondition ? props.props[1].mailsubject.slice(0,40) + '...' : props.props[1].mailsubject}
+               {props.props[1].mailsubject.length > 60 ? props.props[1].mailsubject.slice(0,40) + '...' : props.props[1].mailsubject}
             </div>
             <div className="mail_text">
-                {props.props[1].mailtext.length > screenCondition ? props.props[1].mailtext.slice(0,50) + '...' : props.props[1].mailtext}
+                {props.props[1].mailtext.length > 60 ? props.props[1].mailtext.slice(0,50) + '...' : props.props[1].mailtext}
             </div>
             {
                 showIcons ? <div className="mail_controllers">
@@ -126,4 +124,4 @@ const Mail = (props) => {
     )
     
 }
-export default Mail
+export default FavoritedMail

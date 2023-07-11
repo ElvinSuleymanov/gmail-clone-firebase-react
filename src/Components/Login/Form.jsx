@@ -6,7 +6,9 @@ import { useEffect, useRef } from 'react';
 import { accountActions } from '../../Redux/store';
 import { setCurrentAcc } from '../../Redux/store';
 import { logDOM } from '@testing-library/react';
+import {toast} from 'react-toastify'
 const Form = () => {
+    
     const state = useSelector((state) => state)
     const dispatch = useDispatch()
     
@@ -24,7 +26,31 @@ const Form = () => {
       const response = await fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${userid[0]}.json` )
        const data = await response.json()
        dispatch(setCurrentAcc.targetAcc(data))
+       localStorage.setItem('account',JSON.stringify(data))
        return state.currentAcc.targetAcc
+    }
+
+
+    const nextBtnHandler = async e => {
+        e.preventDefault()
+        if (inputRef.current.value && inputRef.current.value.match(/@/)) {
+            // dispatch(toggleActions.turnNext())
+            const usersObjectsResponse = await fetch('https://clone-b8039-default-rtdb.firebaseio.com/.json')
+            const usersObjects = await usersObjectsResponse.json()
+            let id = Object.entries(usersObjects).find(user => {
+                if (user[1].username === inputRef.current.value) {
+                    return user
+                }
+               
+            })
+
+           dispatch(setCurrentAcc.setID(id))
+           console.log(state.currentAcc.currentID);
+           await findAcc(id)
+            navigate('/login')
+            
+        }
+    
     }
 
     useEffect(() => {
@@ -67,23 +93,7 @@ const Form = () => {
             <button className='create_account_btn' onClick={() => {
                 navigate('/registration')
             }}>Create Account</button>
-            <button onClick={(e) => {
-                e.preventDefault()
-                if (inputRef.current.value && inputRef.current.value.match(/@/)) {
-                    // dispatch(toggleActions.turnNext())
-                    let id = Object.entries(state.accountsObject.accounts).find(user => {
-                        if (user[1].username === inputRef.current.value) {
-                            return user
-                        }
-                    })
-
-                   dispatch(setCurrentAcc.setID(id))
-                   console.log(state.currentAcc.currentID);
-                    findAcc(id)
-                    navigate('/login')
-                    
-                }
-            }} className="next_page_btn">Next</button>
+            <button onClick={nextBtnHandler} className="next_page_btn">Next</button>
         </div>
 
         

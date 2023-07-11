@@ -15,7 +15,7 @@ import QuestionMarkToggle from './Questiontoggle'
 import { useRef } from 'react'
 
 const Searchbar = () => {
-    const state = useSelector(state => state.currentAcc.targetAcc)
+    // const state = useSelector(state => state.currentAcc.targetAcc)
     const state2 = useSelector(state => state)
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -70,7 +70,7 @@ const Searchbar = () => {
                 </div>
                 <div className="profile_photo">
                     <div className="letter" style={{userSelect:'none'}}>
-                    {state.name[0].toUpperCase()}
+                    {state2.currentAcc.targetAcc.name[0].toUpperCase()}
 
                     </div>
                 </div>

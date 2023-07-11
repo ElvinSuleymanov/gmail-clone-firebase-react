@@ -21,13 +21,18 @@ const Sidebar = () => {
         navigate(`/accounts/${state.currentAcc.currentID}/sent`)
     }
 
+    const goFavorites = e => {
+        e.preventDefault()
+        dispatch(sideBarToggles.setCurrentPage('favorite'))
+        navigate(`/accounts/${state.currentAcc.currentID}/favorites`)
+    }
 
     return (
     <aside className={` ${state.toggleStates.openedSide ? 'active' : ''} `} onMouseLeave={() => {
-        dispatch(toggleActions.closeSidebar())
+            dispatch(toggleActions.closeSidebar())
         
     }} onMouseEnter={() => {
-        dispatch(toggleActions.openSidebar())
+            dispatch(toggleActions.openSidebar())
        
     }}>
         
@@ -38,32 +43,32 @@ const Sidebar = () => {
                     dispatch(toggleActions.closeSidebar())
                 } 
             }}>
-               {<Pencilicon></Pencilicon>}
+               {<Pencilicon style={{color:'black'}}></Pencilicon>}
                {/* <span className="btn_text">Compose</span> */}
             </button>
         </div>
         <div className={`inbox_icon ${state.sideBarStates.inboxPage ? 'current' : ''}`} >
-            <button className="inbox" style={{cursor:'pointer'}} onClick={() => {
+            <button className="inbox" style={{cursor:'pointer'}}  onClick={() => {
             dispatch(sideBarToggles.setCurrentPage('inbox'))
             navigate(`/accounts/${state.currentAcc.currentID}`)
 
         }}>
-            <FaInbox ></FaInbox>
+            <FaInbox style={{color:'black'}}></FaInbox>
             </button>
         </div>
-        <div className="star_icon">
-            <button className="star">
-                <Staricon></Staricon>
+        <div className={`star_icon ${state.sideBarStates.favoritesPage ? 'current' : ''}`}>
+            <button className="star" style={{cursor:'pointer'}} onClick={goFavorites}>
+                <Staricon style={{color:'black'}}></Staricon>
             </button>
         </div>
         <div className="clock_icon">
             <button className="clock">
-                <Clockicon></Clockicon>
+                <Clockicon style={{color:'black'}}></Clockicon>
             </button>
         </div>
         <div className={`sent_icon ${state.sideBarStates.sentPage ? 'current' : ''}`}   >
             <button className={`sent`} onClick={sentButtonHandler} style={{cursor:'pointer'}} >
-                <IoSendSharp></IoSendSharp>
+                <IoSendSharp style={{color:'black'}}></IoSendSharp>
             </button>
         </div>
     </aside>

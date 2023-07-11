@@ -3,14 +3,12 @@ import Mailbox from "./Mailbox"
 import Mail from "./Mail"
 import { useContext, useEffect, useState } from "react"
 import {IoIosRefresh as RefreshIcon} from 'react-icons/io'
-import { setCurrentAcc } from "../../../Redux/store"
+import { setCurrentAcc, sideBarToggles, toggleActions } from "../../../Redux/store"
 
 const Mailcontainer = () => {
     const dispatch = useDispatch()
     const state = useSelector(state => state)
-    useEffect(() => {
-
-    },)
+   
     const [inbox,setInbox] = useState(state.currentAcc.targetAcc.inbox)
     
     
@@ -19,6 +17,8 @@ const Mailcontainer = () => {
         try {
             const response = await fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${state.currentAcc.currentID}.json`)
             const user = await response.json()
+            console.log(user.inbox);
+            console.log(inbox);
             setInbox(user.inbox)
             dispatch(setCurrentAcc.targetAcc(user))
         }
@@ -31,18 +31,30 @@ const Mailcontainer = () => {
         e.preventDefault()
         refreshData()
     }
-
+    const refreshCurrentPage = async () => {
+        try {
+            const response = await fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${state.currentAcc.currentID}.json`)
+            const user = await response.json()
+            setInbox(user.inbox)
+            console.log(inbox);
+        }
+        catch(err) {
+            console.log(err)
+        }
+    }
 
     useEffect(() => {
-        refreshData()     
+        refreshData()
+        refreshCurrentPage()    
+        console.log('its rendered'); 
     },[])
 
     return (
-        <div className="mail_container">
+        <div className="mail_container" onClick={() => dispatch(toggleActions.closeSidebar())}>
            {state.toggleStates.showmailbox && <Mailbox></Mailbox>}
            <div className="mails_container">
            <div className="mail_container_options">
-            <button className="refresh_btn" onClick={RefreshBtnHandler}><RefreshIcon></RefreshIcon></button>
+            <button className="refresh_btn" onClick={RefreshBtnHandler}><RefreshIcon style={{color:'black'}}></RefreshIcon></button>
            </div>
            {inbox &&  Object.entries(inbox).reverse().map(mail => {
             return (

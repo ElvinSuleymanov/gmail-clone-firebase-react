@@ -75,6 +75,7 @@
                             display: flex;
                             align-items: center;
                             gap:30px;
+                            
                             margin-bottom: 20px;
                             .sender_profile {
                                 color:#fff;
@@ -104,4 +105,120 @@
             }
         }
     }
+}
+
+
+
+@media(max-width:500px) {
+    .main_section.mail_detail {
+        background-color: orange;
+        .mail_container {
+            .mail_detail.mails_container {
+                padding-top: 25px;
+                .mail_detail_options {
+                    padding-left: 14px;
+                    gap:30px;
+                    display: flex;
+                    .icon {
+                        font-size: 20px;
+                        cursor: pointer;
+                        position: relative;
+                        z-index: 1;
+                        color:#787A7A;
+                        &::after {
+                            z-index: -1;
+                            content:'';
+                            display: block;
+                            height: 40px;
+                            width: 40px;
+                            border-radius: 50%;
+                            background-color: #f6f8fc;
+                            position: absolute;
+                            top:45%;
+                            left:50%;
+                            transform:translate(-50%,-50%) scale(0);
+                            transition:0.1s all;
+                            opacity: 0;
+                            
+                        }
+                        &:hover {
+                            &::after {
+                             transform:translate(-50%,-50%) scale(1.2);
+                             opacity: 1;
+                            }
+                            
+                        }
+                    }
+                }
+                .mail_detail_container {
+                    padding-top: 20px;
+                    padding-left: 5%;
+                    padding-right: 5%;
+                    .mail_text_container_top {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        .mail_subject_detail {
+                            font-size: 22px;
+                            font-family: 'Open Sans';
+                            margin-left: 5%;
+                            word-wrap: break-word;
+                            width: 70%;
+                        }
+                        .mail_sent_date {
+                            font-size: 15px;
+                            padding-right: 5%;
+
+                        }
+                    }
+                    .mail_text_container_bottom {
+                        background-color: #F6F6F6;
+                        width: 100%;
+                        padding: 10px;
+                        padding-left: 5%;
+                        padding-right: 5%;
+                        
+                       min-height: 400px;
+                        .mail_text {
+                            background-color: white;
+                            width: 90%;
+                            margin:0 auto;
+                            padding: 20px;
+                            word-wrap: break-word;
+                            .mail_sender_informations {
+                                display: flex;
+                                align-items: center;
+                                gap:30px;
+                                
+                                margin-bottom: 20px;
+                                .sender_profile {
+                                    color:#fff;
+                                    position: relative;
+                                    z-index: 1;
+                                    font-size: 17px;
+                                    &::after {
+                                        content:'';
+                                        display: block;
+                                        height: 30px;
+                                        width: 30px;
+                                        border-radius:50% ;
+                                        background-color: #1C5B88;
+                                        color:#fff;
+                                        position: absolute;
+                                        z-index: -1;
+                                        top:50%;
+                                        left:50%;
+                                        transform:translate(-50%,-50%);
+                                        font-family: 'Open Sans';
+                                    }
+                                }
+                            }
+                        }
+                    }
+    
+                }
+            }
+        }
+    }
+    
 }

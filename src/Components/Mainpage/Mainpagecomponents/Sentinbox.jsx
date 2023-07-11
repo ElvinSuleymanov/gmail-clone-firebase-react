@@ -2,13 +2,15 @@ import Searchbar from "./Search"
 import Sidebar from "./Sidebar"
 import './Sentinbox.scss'
 import Mailbox from "./Mailbox"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import {IoIosRefresh as RefreshIcon} from 'react-icons/io'
 import Mail from "./Mail"
 import { useEffect, useState } from "react"
 import SentMail from "./Sentmail"
+import { Navigate } from "react-router-dom"
+import { toggleActions } from "../../../Redux/store"
 const SentInbox = () => {
-
+    const dispatch = useDispatch()
 
     const [sent,SetSent] = useState(false)
     const refreshSentInbox = async () => {
@@ -23,6 +25,7 @@ const SentInbox = () => {
             console.log(err)
         }
     }
+    const state = useSelector(state => state)
 
     const RefreshBtnHandler = e => {
         e.preventDefault()
@@ -31,12 +34,14 @@ const SentInbox = () => {
 
     useEffect(() => {
         refreshSentInbox()
-        console.log(sent);
     },[])
 
-const state = useSelector(state => state)
+    if (state.currentAcc.currentID === undefined) {
+        return <Navigate to={'/'}></Navigate>
+    }
+
     return (
-        <div className='main_section'>
+        <div className='main_section' >
           
           
             <Searchbar></Searchbar>
@@ -44,9 +49,9 @@ const state = useSelector(state => state)
             <Sidebar></Sidebar>
             <div className="mail_container">
            {state.toggleStates.showmailbox && <Mailbox></Mailbox>}
-           <div className="mails_container">
+           <div className="mails_container" onClick={() => dispatch(toggleActions.closeSidebar())}>
            <div className="mail_container_options">
-            <button className="refresh_btn" onClick={RefreshBtnHandler}><RefreshIcon></RefreshIcon></button>
+            <button className="refresh_btn" onClick={RefreshBtnHandler}><RefreshIcon style={{color:'black'}}></RefreshIcon></button>
            </div>
             {
                 sent && Object.entries(sent).reverse().map(mail => {

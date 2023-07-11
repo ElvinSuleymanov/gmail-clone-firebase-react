@@ -332,6 +332,11 @@
             }
             .mail_container {
                 padding-left: 13%;
+                .mails_container {
+                    .mail {
+                        gap:1%
+                    }
+                }
             }
         }
     }
@@ -349,11 +354,28 @@
                 }
             }
             .mail_container {
-                padding-left: 15%;
                 .mail_box {
                     width: 300px;
                     z-index: 10;
                  
+                }
+
+                padding-left: 15%;
+                .mails_container {
+                    .mail {
+                        .mail_controllers {
+                                .icon {
+                                    
+                                    &:nth-child(4) {
+                                        display: none;
+                                    }
+                                    &:nth-child(3) {
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+
                 }
             }
         }
@@ -372,6 +394,7 @@
             }
             .mail_container {
                 padding-left: 17%;
+               
             }
         }
     }
