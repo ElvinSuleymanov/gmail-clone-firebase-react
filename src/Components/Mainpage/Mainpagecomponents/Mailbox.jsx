@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { inputFilterActions, toggleActions } from '../../../Redux/store'
 import {VscChromeMinimize} from 'react-icons/vsc'
 import { useRef } from 'react'
+import { Toaster,toast } from 'react-hot-toast'
 const Mailbox = () => {
     const dispatch = useDispatch()
     const state = useSelector(state => state)
@@ -41,8 +42,14 @@ const Mailbox = () => {
             if(account[1].username === targetAccInput.current.value) {
                 return account
             }
+            else {
+                return undefined
+            }
         })
-
+        if (targetAccObject[0] === undefined) {
+            toast.error('User Not Found')
+            return ''
+        }
 
         fetch(`https://clone-b8039-default-rtdb.firebaseio.com/${targetAccObject[0][0]}/inbox.json`,{
             method:'POST',
@@ -66,6 +73,8 @@ const Mailbox = () => {
 
 
     return (
+        <>
+        <Toaster></Toaster>
         <div className="mail_box">
             <div className="mail_box_controller">
                 <span className="text">New Message</span>
@@ -103,6 +112,7 @@ const Mailbox = () => {
                 </form>
             </div>
         </div>
+        </>
     )
 }
 export default Mailbox

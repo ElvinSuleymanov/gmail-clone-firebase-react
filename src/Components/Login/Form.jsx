@@ -6,7 +6,8 @@ import { useEffect, useRef } from 'react';
 import { accountActions } from '../../Redux/store';
 import { setCurrentAcc } from '../../Redux/store';
 import { logDOM } from '@testing-library/react';
-import {toast} from 'react-toastify'
+import { Toaster } from 'react-hot-toast';
+import {toast} from 'react-hot-toast'
 const Form = () => {
     
     const state = useSelector((state) => state)
@@ -40,10 +41,18 @@ const Form = () => {
             let id = Object.entries(usersObjects).find(user => {
                 if (user[1].username === inputRef.current.value) {
                     return user
+                    
+                } 
+                else {
+                    return undefined
                 }
-               
             })
+            if (id === undefined) {
+                toast.error('User Not Found')
+                return ''
+            }
 
+            
            dispatch(setCurrentAcc.setID(id))
            console.log(state.currentAcc.currentID);
            await findAcc(id)
@@ -67,6 +76,8 @@ const Form = () => {
 
 
     return (
+        <>
+        <Toaster></Toaster>
         <form action="" className={`email ${state.toggleStates.nextPage ? 'translated' : ''}`} >
         <div className="greeting_messages">
            <div className="logo"><img src={Logo} alt="" /></div>
@@ -98,6 +109,7 @@ const Form = () => {
 
         
      </form>
+            </>
         
     )
 }
