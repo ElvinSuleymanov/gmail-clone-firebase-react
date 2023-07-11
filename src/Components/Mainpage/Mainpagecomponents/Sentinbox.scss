@@ -103,27 +103,38 @@
                         
                     }
                     .mail_text {
-                        flex:2;
+                        max-width: 350px;
+                        width: 100%;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                         text-align: left;
-                        
                     }
                     .mail_subject {
                         font-weight: 700;
                         text-align: left;
+                        max-width: 200px;
+                        width: 100%;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                     .mail_send_date {
-                        width: 150px;
+                        max-width: 80px;
+                        width: 100%;
                         height: 20px;
                         text-align: center;
-
+                        background-color: white;
+                       margin-left: auto;
+                        
                     }
                     .mail_controllers {
-                        width: 150px;
+                        width: 160px;
                         height: 20px;
                         display: flex;
                         align-items: center;
                         justify-content: flex-end;
-                       
+                        background-color: white;
+                       margin-left: auto;
+
                         .icon {
                             margin:0 13px;
                             position: relative;

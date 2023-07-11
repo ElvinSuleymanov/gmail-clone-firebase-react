@@ -74,7 +74,7 @@ const Maildetail = (props) => {
             <Sidebar></Sidebar>
         <div className="mail_container">
            {state.toggleStates.showmailbox && <Mailbox></Mailbox>}
-           <div className="mails_container mail_detail">
+           <div className="mails_container mail_detail" onClick={() => dispatch(toggleActions.closeSidebar())}>
             <div className="mail_detail_options">
                 <div className="turn_previous icon" onClick={() => {
                     navigate(-1)
@@ -92,7 +92,7 @@ const Maildetail = (props) => {
                 </div>
             </div>
 
-            <div className="mail_detail_container" onClick={() => dispatch(toggleActions.closeSidebar())}>
+            <div className="mail_detail_container" >
                 <div className="mail_text_container_top">
                     <div className="mail_subject_detail">{state.mailPageState.currentMail[1].mailsubject}</div>
                     <div className="mail_sent_date">{state.mailPageState.currentMail[1].maildate} {state.mailPageState.currentMail[1].mailTime} ({TimeShowing()}) </div>

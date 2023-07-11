@@ -5,7 +5,7 @@ import { toggleActions } from '../../Redux/store'
 import { useSelector,useDispatch } from 'react-redux'
 import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { Toaster,toast } from 'react-hot-toast'
 const FormPassword = () => {
     const dispatch = useDispatch()
     const state = useSelector(state => state)
@@ -15,6 +15,8 @@ const FormPassword = () => {
 
     console.log(state.currentAcc);
     return (state.currentAcc.targetAcc &&
+        <>
+        <Toaster></Toaster>
         <form action="" className={`password ${state.toggleStates.nextPage ? 'translated' : ''}`}>
         <div className="greeting_messages">
            <div className="logo"><img src={Logo} alt="" /></div>
@@ -45,11 +47,15 @@ const FormPassword = () => {
                     navigate(`/accounts/${state.currentAcc.currentID}`)
                     localStorage.setItem("user",JSON.stringify(state.currentAcc.targetAcc))
                 }
+                else {
+                    toast.error('Wrong Password')
+                }
             }} className="next_page_btn">Next</button>
         </div>
 
         
      </form>
+        </>
     )
 }
 
